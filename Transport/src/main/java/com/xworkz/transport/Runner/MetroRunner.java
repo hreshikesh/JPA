@@ -11,11 +11,16 @@ import java.util.List;
 
 public class MetroRunner {
     public static void main(String[] args) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("transport");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction entityTransaction = entityManager.getTransaction();
+        EntityManagerFactory entityManagerFactory=null;
+        EntityManager entityManager=null;
+        EntityTransaction entityTransaction=null;
 
-        entityTransaction.begin();
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("transport");
+             entityManager = entityManagerFactory.createEntityManager();
+            entityTransaction = entityManager.getTransaction();
+
+            entityTransaction.begin();
 
 //        List<MetroEntity> metroList = new ArrayList<>();
 //
@@ -37,9 +42,26 @@ public class MetroRunner {
 //        entityTransaction.commit();
 
 
-        System.out.println(entityManager.find(MetroEntity.class,5));
+            System.out.println(entityManager.find(MetroEntity.class,5));
+            MetroEntity metroEntity=entityManager.find(MetroEntity.class,5);
+            metroEntity.setCity("MNGLR");
+            entityManager.merge(metroEntity);
+            entityTransaction.commit();
 
 
+            MetroEntity metroEntity1=entityManager.find(MetroEntity.class,6);
+            MetroEntity metroEntity2=entityManager.find(MetroEntity.class,4);
+
+            entityManager.remove(metroEntity1);
+            entityManager.remove(metroEntity2);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            entityManagerFactory.close();
+            entityManager.close();
+            if(entityTransaction.isActive())
+                entityTransaction.rollback();
+        }
 
 
     }

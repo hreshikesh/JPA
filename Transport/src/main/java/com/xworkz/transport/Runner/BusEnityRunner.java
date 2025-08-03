@@ -11,12 +11,19 @@ import java.util.List;
 
 public class BusEnityRunner {
 
-    public static void main(String[] args) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("transport");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction entityTransaction = entityManager.getTransaction();
+    private static EntityTransaction entityTransaction;
 
-        entityTransaction.begin();
+    public static void main(String[] args) {
+        EntityManagerFactory entityManagerFactory =null;
+                EntityManager entityManager =null;
+                EntityTransaction entityTransaction =null;
+
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("transport");
+            entityManager = entityManagerFactory.createEntityManager();
+            entityTransaction = entityManager.getTransaction();
+
+            entityTransaction.begin();
 //
 //        List<BusEntity> busList = new ArrayList<>();
 //
@@ -37,9 +44,20 @@ public class BusEnityRunner {
 //        }
 //        entityTransaction.commit();
 
-        BusEntity busEntity=entityManager.find(BusEntity.class,5);
-        System.out.println(busEntity);
-
+            BusEntity busEntity=entityManager.find(BusEntity.class,5);
+            System.out.println(busEntity);
+            busEntity.setBusName("Sugama");
+            entityManager.merge(busEntity);
+            entityTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManagerFactory.close();
+            entityManagerFactory.close();
+            if(entityTransaction.isActive()){
+                entityTransaction.rollback();
+            }
+        }
 
 
     }

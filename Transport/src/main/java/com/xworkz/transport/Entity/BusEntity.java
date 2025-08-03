@@ -1,8 +1,6 @@
 package com.xworkz.transport.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bus_info")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString

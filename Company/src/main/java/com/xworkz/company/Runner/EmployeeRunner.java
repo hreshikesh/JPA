@@ -39,6 +39,24 @@ public class EmployeeRunner {
 //        ;
         EmployeeEntity companyEntity=entityManager.find(EmployeeEntity.class,9);
         System.out.println(companyEntity);
+        companyEntity.setEmployeeBranch("Blgnr");
+        entityManager.merge(companyEntity);
+
+        EmployeeEntity companyEntity1=entityManager.find(EmployeeEntity.class,1);
+        EmployeeEntity companyEntity2=entityManager.find(EmployeeEntity.class,2);
+        if(companyEntity1!=null){
+            entityManager.remove(companyEntity1);
+        }
+        if(companyEntity2!=null){
+            entityManager.remove(companyEntity2);
+        }
+
+        entityTransaction.commit();
+
+
+
+
+
 
     }
 }

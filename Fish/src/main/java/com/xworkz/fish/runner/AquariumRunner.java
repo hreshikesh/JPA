@@ -11,11 +11,15 @@ import java.util.List;
 
 public class AquariumRunner {
     public static void main(String[] args) {
-        EntityManagerFactory entityManagerFactory= Persistence.createEntityManagerFactory("fish");
-        EntityManager entityManager=entityManagerFactory.createEntityManager();
-        EntityTransaction entityTransaction=entityManager.getTransaction();
+        EntityManagerFactory entityManagerFactory=null;
+                EntityManager entityManager=null;
+                EntityTransaction entityTransaction=null;
+        try {
+           entityManagerFactory= Persistence.createEntityManagerFactory("fish");
+           entityManager=entityManagerFactory.createEntityManager();
+           entityTransaction=entityManager.getTransaction();
 
-        entityTransaction.begin();
+            entityTransaction.begin();
 
 //        List<AquariumEntity> aquariumList = new ArrayList<>();
 //
@@ -37,8 +41,22 @@ public class AquariumRunner {
 //        entityTransaction.commit();
 
 
-        System.out.println(entityManager.find(AquariumEntity.class,10));
+            System.out.println(entityManager.find(AquariumEntity.class,9));
 
+            AquariumEntity aquariumEntity=entityManager.find(AquariumEntity.class,9);
+            aquariumEntity.setBrand("Asus");
+            entityManager.merge(aquariumEntity);
+            entityTransaction.commit();
+            System.out.println(entityManager.find(AquariumEntity.class,9));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            entityManagerFactory.close();
+            entityManager.close();
+            if(entityTransaction.isActive()){
+                entityTransaction.rollback();
+            }
+        }
 
 
     }

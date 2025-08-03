@@ -11,7 +11,6 @@ import java.util.List;
 
 public class BusEnityRunner {
 
-    private static EntityTransaction entityTransaction;
 
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory =null;
@@ -49,6 +48,8 @@ public class BusEnityRunner {
             busEntity.setBusName("Sugama");
             entityManager.merge(busEntity);
             entityTransaction.commit();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

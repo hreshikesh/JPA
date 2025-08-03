@@ -46,14 +46,18 @@ public class MetroRunner {
             MetroEntity metroEntity=entityManager.find(MetroEntity.class,5);
             metroEntity.setCity("MNGLR");
             entityManager.merge(metroEntity);
-            entityTransaction.commit();
 
 
             MetroEntity metroEntity1=entityManager.find(MetroEntity.class,6);
             MetroEntity metroEntity2=entityManager.find(MetroEntity.class,4);
+            if(metroEntity1!=null) {
+                entityManager.remove(metroEntity1);
+            }
+            if(metroEntity2!=null) {
+                entityManager.remove(metroEntity2);
+            }
 
-            entityManager.remove(metroEntity1);
-            entityManager.remove(metroEntity2);
+            entityTransaction.commit();
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {

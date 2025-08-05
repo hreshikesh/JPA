@@ -18,4 +18,33 @@ public class BisleriServiceImpl implements BisleriService{
 
         return null;
     }
+
+    @Override
+    public BisleriEntity getBisleriEntityById(int id) {
+
+        BisleriRepository bisleriRepository=new BisleriRepositoryImpl();
+        System.out.println("service ...");
+       return bisleriRepository.getBisleriEntityById(id);
+
+
+
+
+    }
+
+    @Override
+    public boolean updateBisleriEntityById(int id, String location) {
+
+        System.out.println("service update method");
+        BisleriRepository bisleriRepository=new BisleriRepositoryImpl();
+       boolean result= bisleriRepository.updateBisleriEntityById(id,location);
+        return result;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        System.out.println("delete service...");
+        BisleriRepository bisleriRepository=new BisleriRepositoryImpl();
+        bisleriRepository.deleteById(id);
+
+    }
 }

@@ -14,4 +14,29 @@ public class MobileServiceImpl implements MobileService{
 
         return null;
     }
+
+    @Override
+    public MobileEntity getMobileEntityById(int id) {
+
+        MobileRepository mobileRepository=new MobileRepositoryImpl();
+       return mobileRepository.getMobileEntityById(id);
+
+
+
+
+    }
+
+    @Override
+    public boolean updateMobileEntityById(int id, String model) {
+        MobileRepository mobileRepository=new MobileRepositoryImpl();
+
+        return  mobileRepository.updateMobileEntityById(id,model);
+    }
+
+    @Override
+    public void deleteMobileEntityById(int id) {
+        MobileRepository mobileRepository=new MobileRepositoryImpl();
+        mobileRepository.deleteMobileEntityById(id);
+
+    }
 }

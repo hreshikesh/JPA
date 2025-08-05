@@ -6,14 +6,25 @@ import com.xworkz.mobile.service.MobileServiceImpl;
 
 public class MobileRunner {
     public static void main(String[] args) {
+//save
+//        MobileEntity mobile=new MobileEntity(1,"Apple",45000,"14Plus");
 
-        MobileEntity mobile=new MobileEntity(1,"Apple",45000,"14Plus");
+//        MobileEntity mobile2=new MobileEntity(3,"Vivo",25000,"V21Pro");
+//
+////        System.out.println("Runner "+mobile1);
+        MobileService mobileService = new MobileServiceImpl();
+//        mobileService.save(mobile2);
+//find
+        MobileEntity mobileEntity = mobileService.getMobileEntityById(2);
+        System.out.println(mobileEntity);
+        //update
 
-        MobileEntity mobile1=new MobileEntity(2,"Oppo",15000,"reno2f");
+        mobileService.updateMobileEntityById(1, "15promax");
 
-        System.out.println("Runner "+mobile1);
-        MobileService mobileService=new MobileServiceImpl();
-        mobileService.save(mobile1);
+
+        //delete
+    mobileService.deleteMobileEntityById(2);
+
 
     }
 }

@@ -41,4 +41,100 @@ public class MobileRepositoryImpl implements MobileRepository{
 
 
     }
+
+    @Override
+    public MobileEntity getMobileEntityById(int id) {
+        EntityManagerFactory entityManagerFactory=null;
+        EntityManager entityManager=null;
+        EntityTransaction entityTransaction=null;
+        MobileEntity mobile=null;
+
+        try {
+
+            entityManagerFactory= Persistence.createEntityManagerFactory("mobile");
+            entityManager=entityManagerFactory.createEntityManager();
+            entityTransaction=entityManager.getTransaction();
+            entityTransaction.begin();
+
+            mobile=entityManager.find(MobileEntity.class,id);
+            entityTransaction.commit();
+
+        }catch (Exception e){
+            if(entityTransaction.isActive()){
+                entityTransaction.rollback();
+            }
+
+        }finally {
+            entityManagerFactory.close();
+
+        }
+
+
+        return mobile;
+    }
+
+    @Override
+    public boolean updateMobileEntityById(int id, String model) {
+        EntityManagerFactory entityManagerFactory=null;
+        EntityManager entityManager=null;
+        EntityTransaction entityTransaction=null;
+        MobileEntity mobile=null;
+
+        try {
+
+            entityManagerFactory= Persistence.createEntityManagerFactory("mobile");
+            entityManager=entityManagerFactory.createEntityManager();
+            entityTransaction=entityManager.getTransaction();
+            entityTransaction.begin();
+
+            mobile=entityManager.find(MobileEntity.class,id);
+            mobile.setModel(model);
+            entityTransaction.commit();
+            return  true;
+
+        }catch (Exception e){
+            if(entityTransaction.isActive()){
+                entityTransaction.rollback();
+            }
+
+        }finally {
+            entityManagerFactory.close();
+
+        }
+
+
+        return false;
+    }
+
+    @Override
+    public void deleteMobileEntityById(int id) {
+        EntityManagerFactory entityManagerFactory=null;
+        EntityManager entityManager=null;
+        EntityTransaction entityTransaction=null;
+        MobileEntity mobile=null;
+
+        try {
+
+            entityManagerFactory= Persistence.createEntityManagerFactory("mobile");
+            entityManager=entityManagerFactory.createEntityManager();
+            entityTransaction=entityManager.getTransaction();
+            entityTransaction.begin();
+
+            mobile=entityManager.find(MobileEntity.class,id);
+            entityManager.remove(mobile);
+            entityTransaction.commit();
+
+
+        }catch (Exception e){
+            if(entityTransaction.isActive()){
+                entityTransaction.rollback();
+            }
+
+        }finally {
+            entityManagerFactory.close();
+
+        }
+
+
+    }
 }

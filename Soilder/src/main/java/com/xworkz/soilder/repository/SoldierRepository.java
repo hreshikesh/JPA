@@ -16,4 +16,8 @@ public interface SoldierRepository {
     List<SoldierEntity> getSoilderByAge();
 
     List<SoldierEntity> getAgeBetween();
+
+    SoldierEntity getByEmail(String email);
+
+    SoldierEntity getByPhone(long phone);
 }

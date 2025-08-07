@@ -16,6 +16,9 @@ import javax.persistence.*;
 @NamedQuery(name = "getEntityByNameAndPhone",query = "select entity from SoldierEntity entity where name=:name and phoneNo=:phone")
 @NamedQuery(name = "getAgeAbove25",query = "select entity from SoldierEntity entity where age>25")
 @NamedQuery(name = "getAgeBetween20And30",query = "select entity from SoldierEntity entity where age between 20 and 30")
+@NamedQuery(name = "getByEmail",query = "select e from SoldierEntity e where email=:email")
+@NamedQuery(name = "getByPhone",query = "select e from SoldierEntity e where phoneNo=:phone")
+
 
 public class SoldierEntity {
     @Id

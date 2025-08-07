@@ -70,11 +70,16 @@ public class SoldierRunner {
 
         //6.get by email
         System.out.println("Get data by email");
+        SoldierEntity soldierEntity1=soilderService.getByEmail("ajay.nair@gmail.com");
+        System.out.println(soldierEntity1);
 
 
 
         //7.get by phoneNo
         System.out.println("get data from phoneNo");
+        SoldierEntity soldierEntity2=soilderService.getByPhone(9870012345L);
+        System.out.println(soldierEntity2);
+
 
 
 

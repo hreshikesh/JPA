@@ -38,4 +38,14 @@ public class SoldierServiceImpl implements SoldierService {
     public List<SoldierEntity> getAgeBetween() {
         return new SoldierRepositoryImpl().getAgeBetween();
     }
+
+    @Override
+    public SoldierEntity getByEmail(String email) {
+        return new SoldierRepositoryImpl().getByEmail(email);
+    }
+
+    @Override
+    public SoldierEntity getByPhone(long phone) {
+        return new SoldierRepositoryImpl().getByPhone(phone);
+    }
 }

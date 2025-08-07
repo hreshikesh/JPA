@@ -195,5 +195,68 @@ public class SoldierRepositoryImpl implements SoldierRepository {
         return soldierEntities;
     }
 
+    @Override
+    public SoldierEntity getByEmail(String email) {
+
+        EntityManagerFactory factory=null;
+        EntityManager manager=null;
+        EntityTransaction transaction=null;
+        SoldierEntity soldierEntity=null;
+        try{
+            factory = Persistence.createEntityManagerFactory("soldierUnit");
+            manager = factory.createEntityManager();
+            transaction = manager.getTransaction();
+
+            transaction.begin();
+
+            Query query=manager.createNamedQuery("getByEmail");
+            query.setParameter("email",email);
+            soldierEntity=(SoldierEntity)query.getSingleResult();
+
+            transaction.commit();
+
+        }catch (Exception e){
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+        }finally {
+            manager.close();
+        }
+
+        return soldierEntity;
+
+    }
+
+    @Override
+    public SoldierEntity getByPhone(long phone) {
+        EntityManagerFactory factory=null;
+        EntityManager manager=null;
+        EntityTransaction transaction=null;
+        SoldierEntity soldierEntity=null;
+        try{
+            factory = Persistence.createEntityManagerFactory("soldierUnit");
+            manager = factory.createEntityManager();
+            transaction = manager.getTransaction();
+
+            transaction.begin();
+
+            Query query=manager.createNamedQuery("getByPhone");
+            query.setParameter("phone",phone);
+            soldierEntity=(SoldierEntity)query.getSingleResult();
+
+            transaction.commit();
+
+        }catch (Exception e){
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+        }finally {
+            manager.close();
+        }
+
+        return soldierEntity;
+
+    }
+
 
 }

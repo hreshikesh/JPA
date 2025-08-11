@@ -48,4 +48,14 @@ public class SoldierServiceImpl implements SoldierService {
     public SoldierEntity getByPhone(long phone) {
         return new SoldierRepositoryImpl().getByPhone(phone);
     }
+
+    @Override
+    public String getNameByPlace(String place) {
+        return new SoldierRepositoryImpl().getNameByPlace(place);
+    }
+
+    @Override
+    public SoldierEntity getNameAndAgeByPhoneNo(long phoneNo) {
+        return new SoldierRepositoryImpl().getNameAndAgeByPhoneNo(phoneNo);
+    }
 }

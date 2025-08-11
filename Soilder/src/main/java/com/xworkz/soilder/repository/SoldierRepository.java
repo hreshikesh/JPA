@@ -20,4 +20,8 @@ public interface SoldierRepository {
     SoldierEntity getByEmail(String email);
 
     SoldierEntity getByPhone(long phone);
+
+    String getNameByPlace(String place);
+
+    SoldierEntity getNameAndAgeByPhoneNo(long phoneNo);
 }

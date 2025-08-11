@@ -20,4 +20,8 @@ public interface SoldierService {
     SoldierEntity getByEmail(String email);
     SoldierEntity getByPhone(long phone);
 
+    String getNameByPlace(String place);
+
+    SoldierEntity getNameAndAgeByPhoneNo(long phoneNo);
+
 }

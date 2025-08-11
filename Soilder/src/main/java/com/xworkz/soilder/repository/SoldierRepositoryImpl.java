@@ -258,5 +258,75 @@ public class SoldierRepositoryImpl implements SoldierRepository {
 
     }
 
+    @Override
+    public String getNameByPlace(String place) {
+        EntityManagerFactory factory=null;
+        EntityManager manager=null;
+        EntityTransaction transaction=null;
+        String name=null;
+        try{
+            factory = Persistence.createEntityManagerFactory("soldierUnit");
+            manager = factory.createEntityManager();
+            transaction = manager.getTransaction();
+            transaction.begin();
+           Query query= manager.createNamedQuery("getNameByPlace");
+           query.setParameter("placeBy",place);
+
+           name=(String)query.getSingleResult();
+            transaction.commit();
+
+            System.out.println("Name "+name);
+        }catch (Exception e){
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+        }finally {
+            manager.close();
+        }
+        return name;
+    }
+
+    @Override
+    public SoldierEntity getNameAndAgeByPhoneNo(long phoneNo) {
+        EntityManagerFactory factory=null;
+        EntityManager manager=null;
+        EntityTransaction transaction=null;
+        SoldierEntity soldierEntity=new SoldierEntity();
+        try{
+            factory = Persistence.createEntityManagerFactory("soldierUnit");
+            manager = factory.createEntityManager();
+            transaction = manager.getTransaction();
+            transaction.begin();
+            Query query= manager.createNamedQuery("getNameAndAgeByPhoneNo");
+
+            query.setParameter("phoneBy",phoneNo);
+
+            Object[] objects=(Object[]) query.getSingleResult();
+
+            String name=(String) objects[1];
+            int age=(int) objects[2];
+
+            soldierEntity.setName(name);
+            soldierEntity.setAge(age);
+
+
+            System.out.println("Name "+soldierEntity.getName()+" age "+soldierEntity.getAge());
+
+
+            transaction.commit();
+
+
+
+        }catch (Exception e){
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+        }finally {
+            manager.close();
+        }
+
+        return soldierEntity;
+    }
+
 
 }

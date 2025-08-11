@@ -3,8 +3,6 @@ package com.xworkz.soilder.runner;
 import com.xworkz.soilder.entity.SoldierEntity;
 import com.xworkz.soilder.service.SoldierService;
 import com.xworkz.soilder.service.SoldierServiceImpl;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class SoldierRunner {

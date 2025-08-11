@@ -24,4 +24,7 @@ public interface SoldierService {
 
     SoldierEntity getNameAndAgeByPhoneNo(long phoneNo);
 
+    List<String> getNameByAge();
+    List<SoldierEntity> getNameAndPlaceAndEmailByAgeLessThan30();
+
 }

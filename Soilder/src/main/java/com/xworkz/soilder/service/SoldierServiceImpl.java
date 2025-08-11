@@ -58,4 +58,14 @@ public class SoldierServiceImpl implements SoldierService {
     public SoldierEntity getNameAndAgeByPhoneNo(long phoneNo) {
         return new SoldierRepositoryImpl().getNameAndAgeByPhoneNo(phoneNo);
     }
+
+    @Override
+    public List<String> getNameByAge() {
+        return  new SoldierRepositoryImpl().getNameByAge();
+    }
+
+    @Override
+    public List<SoldierEntity> getNameAndPlaceAndEmailByAgeLessThan30() {
+        return new SoldierRepositoryImpl().getNameAndPlaceAndEmailByAgeLessThan30();
+    }
 }

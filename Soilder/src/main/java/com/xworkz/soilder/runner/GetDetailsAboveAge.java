@@ -3,9 +3,11 @@ package com.xworkz.soilder.runner;
 import com.xworkz.soilder.entity.SoldierEntity;
 import com.xworkz.soilder.service.SoldierServiceImpl;
 
-public class GetDetailsByPhone {
+import java.util.List;
+
+public class GetDetailsAboveAge {
     public static void main(String[] args) {
-       SoldierEntity soldierEntity =new SoldierServiceImpl().getNameAndAgeByPhoneNo(9812345670l);
+        List<SoldierEntity> list=new SoldierServiceImpl().getNameAndPlaceAndEmailByAgeLessThan30();
 
     }
 }

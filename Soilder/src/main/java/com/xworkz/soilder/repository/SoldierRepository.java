@@ -24,4 +24,8 @@ public interface SoldierRepository {
     String getNameByPlace(String place);
 
     SoldierEntity getNameAndAgeByPhoneNo(long phoneNo);
+
+    List<String> getNameByAge();
+
+    List<SoldierEntity> getNameAndPlaceAndEmailByAgeLessThan30();
 }

@@ -1,5 +1,7 @@
 package com.xworkz.driver.entity;
 import lombok.*;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,5 +23,4 @@ public class DriverEntity {
     private String email;
     @Column(name="driver_place")
     private String place;
-
 }
